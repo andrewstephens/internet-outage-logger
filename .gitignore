@@ -1,4 +1,4 @@
 .idea/
-connection_log.txt
+connection_log*.txt
 connection_status
 .DS_Store
