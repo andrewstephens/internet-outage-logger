@@ -22,6 +22,9 @@ func main() {
 	logFilePtr := flag.String("logfile", defaultLogFile, "Log file path")
 	flag.StringVar(logFilePtr, "l", defaultLogFile, "Log file path (shorthand)")
 
+	printOutputPtr := flag.Bool("print", false, "Print output to console")
+	flag.BoolVar(printOutputPtr, "p", false, "Print output to console (shorthand)")
+
 	flag.Parse()
 
 	checkInterval := time.Duration(*intervalPtr) * time.Second
@@ -34,7 +37,9 @@ func main() {
 
 	logger := log.New(file, "", log.LstdFlags)
 
-	fmt.Printf("Monitoring internet connection. Check interval: %v, Log file: %s\n", checkInterval, *logFilePtr)
+	if *printOutputPtr {
+		fmt.Printf("Monitoring internet connection. Check interval: %v, Log file: %s\n", checkInterval, *logFilePtr)
+	}
 
 	var lastStatus bool
 	for {
@@ -42,10 +47,15 @@ func main() {
 
 		if !connected && lastStatus {
 			logger.Println("Internet connection lost")
-			fmt.Println("Internet connection lost")
+
+			if *printOutputPtr {
+				fmt.Println("Internet connection lost")
+			}
 		} else if connected && !lastStatus {
 			logger.Println("Internet connection restored")
-			fmt.Println("Internet connection restored")
+			if *printOutputPtr {
+				fmt.Println("Internet connection restored")
+			}
 		}
 
 		lastStatus = connected

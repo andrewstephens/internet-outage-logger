@@ -2,18 +2,19 @@
 
 This is a simple little program I threw together to track when my internet connection was cutting out.
 
-The program has two flags you can pass:
-- interval to check (in seconds)
-- log file path
+The program has three flags you can pass:
+- interval to check (in seconds): `-interval or -i`
+- log file path `-logfile or -l`
+- option to print to the terminal (stdout) `-print or -p`
 
 ```sh
-./outage-logger -interval 5 -logfile outages.txt
+./outage-logger -interval 5 -logfile outages.txt -print
 ```
 
 You can also use the short versions of those flags:
 
 ```sh
-./outage-logger -i 5 -l outages.txt
+./outage-logger -i 5 -l outages.txt -p
 ```
 
 The log output will look like this:
