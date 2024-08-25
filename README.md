@@ -1,6 +1,6 @@
 # Internet Outage Logger
 
-This is a simple little program I threw together to track when my internet connection was cutting out.
+This is a simple little program I threw together to track when my internet connection was cutting out. Works by pinging a url every N seconds (set with interval flag and defaults to 10 seconds).
 
 The program has three flags you can pass:
 - interval to check (in seconds): `-interval or -i`
